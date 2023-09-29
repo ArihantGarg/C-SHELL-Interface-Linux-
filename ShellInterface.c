@@ -161,12 +161,17 @@ int parseCommand(char* cmdLine) // Parses command
         if(cmdLine[0]=='~') // Handling ~ in cd
         {
             char* homeDirectory=getenv("HOME");
-            printf("%s ",homeDirectory);
             strncpy(cmdLine,cmdLine+1,strlen(cmdLine));
             strcat(homeDirectory,cmdLine);
             strcpy(cmdLine,homeDirectory);
         }
 
+        return 3;
+    }
+    else if(cmdLine[0]=='c' && cmdLine[1]=='d' && strlen(cmdLine)==2)
+    {
+        char* homeDirectory=getenv("HOME");
+        strcpy(cmdLine,homeDirectory);
         return 3;
     }
 
